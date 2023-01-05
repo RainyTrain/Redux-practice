@@ -5,23 +5,27 @@ const Likes = (props) => {
   return (
     <div className="button-controls">
       <button onClick={props.onIncrementLikes}>♥ {props.likes}</button>
-      <button>Dislike</button>
+      <button onClick={props.onDecrementLikes}>Dislike</button>
     </div>
   );
 };
 
 const mapStateToProps = (state) => {
+  const { likesReducer } = state;
   return {
-    likes: state.likes,
+    likes: likesReducer.likes,
   };
 };
 
-const mapDispatchToProps = (dipatch) => {
-    return {
-        onIncrementLikes: () => {
-            console.log('click')
-        }
-    }
-}
+const mapDispatchToProps = (dispatch) => {
+  return {
+    onIncrementLikes: () => {
+      dispatch({ type: 'INCREMENT' });
+    },
+    onDecrementLikes: () => {
+      dispatch({ type: 'DECREMENT' });
+    },
+  };
+};
 
-export default connect(mapStateToProps,mapDispatchToProps)(Likes);
+export default connect(mapStateToProps, mapDispatchToProps)(Likes);
