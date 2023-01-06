@@ -9,7 +9,12 @@ export const likesReducer = (state = initialState, action) => {
     case INCREMENT:
       return { ...state, likes: state.likes + 1 };
     case DECREMENT:
-      return { ...state, likes: state.likes - 1 };
+      if (state.likes > 0) {
+        return { ...state, likes: state.likes - 1 };
+      }
+      else {
+        alert('Error')
+      }
     default:
       return state;
   }
