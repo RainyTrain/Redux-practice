@@ -11,9 +11,8 @@ export const likesReducer = (state = initialState, action) => {
     case DECREMENT:
       if (state.likes > 0) {
         return { ...state, likes: state.likes - 1 };
-      }
-      else {
-        alert('Error')
+      } else {
+        alert('Error');
       }
     default:
       return state;
