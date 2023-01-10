@@ -6,6 +6,7 @@ import SingleComment from './SingleComment';
 const Comments = (props) => {
   const dispatch = useDispatch();
   const comments = useSelector((state) => state.commentReducer.comments);
+
   const [textComment, setTextComment] = useState('');
 
   const handleInput = (e) => {
@@ -14,20 +15,20 @@ const Comments = (props) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(commentCreate(Date.now(), textComment));
+    dispatch(commentCreate(textComment, Date.now()));
     setTextComment('');
   };
-
-  console.log(comments);
 
   return (
     <div className="card-comments">
       <form onSubmit={handleSubmit} className="comments-item">
-        <div className="omments-item-create">&times;</div>
+        <div className="omments-item-create"></div>
         <input value={textComment} onChange={handleInput} placeholder="Comment"></input>
         <input type="submit" hidden></input>
       </form>
-      <SingleComment />
+      {comments.map((item) => (
+        <SingleComment key={item.id} data={item} />
+      ))}
     </div>
   );
 };
