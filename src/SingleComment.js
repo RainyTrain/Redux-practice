@@ -1,10 +1,9 @@
-import { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { commentDelete, commentUpdate } from './redux/Actions';
 
 const SingleComment = (props) => {
   const dispatch = useDispatch();
-  const selector = useSelector((state) => state.commentReducer.comments);
 
   const [commentText, setCommentText] = useState(props.data.text);
 
@@ -21,7 +20,6 @@ const SingleComment = (props) => {
     dispatch(commentDelete(props.data.id));
   };
 
-  console.log('after:', selector);
   return (
     <div className="card-comments">
       <form onSubmit={handleUpdate} className="comments-item">

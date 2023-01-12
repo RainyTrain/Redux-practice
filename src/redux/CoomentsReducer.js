@@ -1,4 +1,4 @@
-import { COMMENT_CREATE, COMMENT_UPDATE, COMMENT_DELETE } from './Types';
+import { COMMENT_CREATE, COMMENT_UPDATE, COMMENT_DELETE, COMMENTS_LOAD } from './Types';
 
 const initialState = {
   comments: [],
@@ -31,6 +31,17 @@ export const commentReducer = (state = initialState, action) => {
       return {
         ...state,
         comments: commentsAfterDeleting,
+      };
+    case COMMENTS_LOAD:
+      const responseData = action.payload.map((item) => {
+        return {
+          text: item.body,
+          id: item.id,
+        };
+      });
+      return {
+        ...state,
+        comments: responseData,
       };
     default:
       return state;
