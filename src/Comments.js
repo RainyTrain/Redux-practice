@@ -19,8 +19,12 @@ const Comments = (props) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(commentCreate(textComment, Date.now()));
-    setTextComment('');
+    if (textComment != 0) {
+      dispatch(commentCreate(textComment, Date.now()));
+      setTextComment('');
+    } else {
+      alert('NO');
+    }
   };
 
   return (
