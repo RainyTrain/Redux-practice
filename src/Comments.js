@@ -23,7 +23,7 @@ const Comments = (props) => {
       dispatch(commentCreate(textComment, Date.now()));
       setTextComment('');
     } else {
-      alert('NO');
+      alert('Error');
     }
   };
 
